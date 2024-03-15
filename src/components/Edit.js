@@ -6,48 +6,29 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 function Edit() {
-    // Here usestate has been used in order
-    // to set and get values from the jsx
     const [name, setname] = useState("");
     const [age, setage] = useState("");
     const [id, setid] = useState("");
-
-    // Used for navigation with logic in javascript
     let history = useNavigate();
 
-    // Getting an index of an entry with an id
     let index = array
         .map(function (e) {
             return e.id;
         })
         .indexOf(id);
 
-    // Function for handling the edit and
-    // pushing changes of editing/updating
     const handelSubmit = (e) => {
-        // Preventing from reload
         e.preventDefault();
         if (name === "" || age === "") {
             alert("invalid input");
             return;
         }
 
-        // Getting an index of an array
         let a = array[index];
-
-        // Putting the value from the input
-        // textfield and replacing it from
-        // existing for updation
         a.Name = name;
         a.Age = age;
-
-
-        // Redirecting to main page
         history("/");
     };
-
-    // Useeffect take care that page will
-    // be rendered only once
     useEffect(() => {
         setname(localStorage.getItem("Name"));
         setage(localStorage.getItem("Age"));
@@ -60,8 +41,6 @@ function Edit() {
                 className="d-grid gap-2"
                 style={{ margin: "5rem" }}
             >
-                {/* setting a name from the 
-                    input textfiled */}
                 <Form.Group
                     className="mb-3"
                     controlId="formBasicEmail"
@@ -75,8 +54,6 @@ function Edit() {
                         placeholder="Enter Name"
                     />
                 </Form.Group>
-
-                {/* setting a age from the input textfiled */}
                 <Form.Group
                     className="mb-3"
                     controlId="formBasicPassword"
@@ -90,9 +67,6 @@ function Edit() {
                         placeholder="Age"
                     />
                 </Form.Group>
-
-                {/* Hadinling an onclick event 
-                    running an edit logic */}
                 <Button
                     onClick={(e) => handelSubmit(e)}
                     variant="primary"
@@ -101,8 +75,6 @@ function Edit() {
                 >
                     Update
                 </Button>
-
-                {/* Redirecting to main page after editing */}
                 <Link className="d-grid gap-2" to="/">
                     <Button variant="warning" size="lg">
                         Home

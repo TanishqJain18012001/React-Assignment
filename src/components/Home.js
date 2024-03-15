@@ -6,17 +6,12 @@ import { Link, useNavigate } from "react-router-dom";
 
 function Home() {
     let history = useNavigate();
-
-    // You may skip this part if you're
-    // using react-context api or redux
     function setID(id, name, age) {
         localStorage.setItem("id", id);
         localStorage.setItem("Name", name);
         localStorage.setItem("Age", age);
     }
 
-    // Deleted function - functionality
-    // for deleting the entry
     function deleted(id) {
         let index = array
             .map(function (e) {
@@ -24,11 +19,7 @@ function Home() {
             })
             .indexOf(id);
 
-        // deleting the entry with index
         array.splice(index, 1);
-
-        // We need to re-render the page for getting
-        // the results so redirect to same page.
         history("/");
     }
 
@@ -42,19 +33,11 @@ function Home() {
                     </tr>
                 </thead>
                 <tbody>
-                    {/* Mapping though every element 
-                        in the array and showing the 
-                        data in the form of table */}
                     {array.map((item) => {
                         return (
                             <tr>
                                 <td>{item.Name}</td>
                                 <td>{item.Age}</td>
-
-                                {/* getting theid,name, and 
-                                    age for storing these
-                                    value in the jsx with 
-                                    onclick event */}
                                 <td>
                                     <Link to={`/edit`}>
                                         <Button
@@ -71,9 +54,6 @@ function Home() {
                                         </Button>
                                     </Link>
                                 </td>
-
-                                {/* Using thr deleted function passing
-                                    the id of an entry */}
                                 <td>
                                     <Button
                                         onClick={(e) =>
@@ -89,9 +69,6 @@ function Home() {
                     })}
                 </tbody>
             </Table>
-
-            {/* Button for redirecting to create page for
-                insertion of values */}
             <Link className="d-grid gap-2" to="/create">
                 <Button variant="warning" size="lg">
                     Create

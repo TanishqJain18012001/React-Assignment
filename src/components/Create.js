@@ -6,32 +6,25 @@ import { v4 as uuid } from "uuid";
 import { Link, useNavigate } from "react-router-dom";
 
 function Create() {
-    // Making usestate for setting and
-    // fetching a value in jsx
     const [name, setname] = useState("");
     const [age, setage] = useState("");
-
-    // Using useNavigation for redirecting to pages
     let history = useNavigate();
 
-    // Function for creating a post/entry
     const handelSubmit = (e) => {
-        e.preventDefault(); // Prevent reload
+        e.preventDefault(); 
 
-        const ids = uuid(); // Creating unique id
-        let uni = ids.slice(0, 8); // Slicing unique id
+        const ids = uuid(); 
+        let uni = ids.slice(0, 8); 
 
-        // Fetching a value from usestate and
-        // pushing to javascript object
+    
         let a = name,
             b = age;
         if (name ==="" || age === "") {
             alert("invalid input");
             return;
         }
+        else 
         array.push({ id: uni, Name: a, Age: b });
-
-        // Redirecting to home page after creation done
         history("/");
     };
 
@@ -41,8 +34,6 @@ function Create() {
                 className="d-grid gap-2"
                 style={{ margin: "5rem" }}
             >
-                {/* Fetching a value from input textfirld 
-                    in a setname using usestate*/}
                 <Form.Group
                     className="mb-3"
                     controlId="formBasicName"
@@ -56,9 +47,6 @@ function Create() {
                         required
                     />
                 </Form.Group>
-
-                {/* Fetching a value from input textfirld in
-                    a setage using usestate*/}
                 <Form.Group
                     className="mb-3"
                     controlId="formBasicAge"
@@ -72,9 +60,6 @@ function Create() {
                         required
                     />
                 </Form.Group>
-
-                {/* handing a onclick event in button for
-                    firing a function */}
                 <Button
                     onClick={(e) => handelSubmit(e)}
                     variant="primary"
@@ -82,8 +67,6 @@ function Create() {
                 >
                     Submit
                 </Button>
-
-                {/* Redirecting back to home page */}
                 <Link className="d-grid gap-2" to="/">
                     <Button variant="info" size="lg">
                         Home
